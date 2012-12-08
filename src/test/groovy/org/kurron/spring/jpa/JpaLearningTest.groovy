@@ -27,6 +27,17 @@ class JpaLearningTest extends AbstractTransactionalJUnit4SpringContextTests {
     public void persist_parent_and_child_via_jpa_entity_manager() {
         assert null != entityManager
 
+        final Parent parent = new Parent()
+        parent.name = randomHexString()
+
+        final Child child = new Child()
+        child.name = randomHexString()
+        child.noise = randomHexString()
+        parent.addChild( child )
+
+        entityManager.persist( parent )
+        entityManager.flush()
+
     }
 
     private String randomHexString()
