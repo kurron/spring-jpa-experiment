@@ -9,36 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests
 
+import javax.persistence.EntityManager
+import javax.persistence.PersistenceContext
+
 /**
  * Learning test to drive the Spring JPA experiments.
  */
 @ContextConfiguration
-class HibernateLearningTest extends AbstractTransactionalJUnit4SpringContextTests {
+class JpaLearningTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @Autowired
-    private SessionFactory sessionFactory
+    @PersistenceContext
+    private EntityManager entityManager
 
     private final Random random = new Random()
 
     @Test
-    public void persist_parent_and_child_via_hibernate_session() {
-        assert null != sessionFactory
+    public void persist_parent_and_child_via_jpa_entity_manager() {
+        assert null != entityManager
 
-        final Parent parent = new Parent()
-        parent.name = randomHexString()
-
-        final Child child = new Child()
-        child.name = randomHexString()
-        child.noise = randomHexString()
-        parent.addChild( child )
-
-        currentSession().save( parent )
-        currentSession().flush()
-    }
-
-    private Session currentSession()
-    {
-        return sessionFactory.getCurrentSession()
     }
 
     private String randomHexString()

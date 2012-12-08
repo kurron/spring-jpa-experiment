@@ -43,6 +43,7 @@ dependencies {
 
     compile "org.springframework.data:spring-data-jpa:${springDataJpaVersion}"
     compile "org.hibernate:hibernate-core:${hibernateVersion}"
+    compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"
 
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     compile "org.slf4j:slf4j-ext:${slf4jVersion}"
@@ -94,6 +95,7 @@ dependencies {
 
     sourceArchives "org.springframework.data:spring-data-jpa:${springDataJpaVersion}:sources"
     sourceArchives "org.hibernate:hibernate-core:${hibernateVersion}:sources"
+    sourceArchives "org.hibernate:hibernate-entitymanager:${hibernateVersion}:sources"
     sourceArchives "org.hsqldb:hsqldb:${hsqldbVersion}:sources"
 }
 
