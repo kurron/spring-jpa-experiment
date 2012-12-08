@@ -6,6 +6,7 @@
       <root url="jar://$PROJECT_DIR$/build/dependencies/hibernate-commons-annotations-4.0.1.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/build/dependencies/jboss-logging-3.1.0.GA.jar!/" />
       <root url="jar://$PROJECT_DIR$/build/dependencies/jboss-transaction-api_1.1_spec-1.0.0.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/dependencies/javassist-3.15.0-GA.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
