@@ -3,6 +3,7 @@ package org.kurron.spring.jpa
 import org.junit.Test
 import org.kurron.domain.Child
 import org.kurron.domain.Parent
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests
 
@@ -13,16 +14,17 @@ import javax.persistence.PersistenceContext
  * Learning test to drive the Spring JPA experiments.
  */
 @ContextConfiguration
-class JpaLearningTest extends AbstractTransactionalJUnit4SpringContextTests {
+class SpringJpaLearningTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @PersistenceContext
-    private EntityManager entityManager
+    @Autowired
+    private ParentRepository repository;
 
     private final Random random = new Random()
 
     @Test
-    public void persist_parent_and_child_via_jpa_entity_manager() {
-        assert null != entityManager
+    public void persist_parent_and_child_via_spring_jpa_repository() {
+
+        assert null != repository
 
         final Parent parent = new Parent()
         parent.name = randomHexString()
@@ -32,8 +34,7 @@ class JpaLearningTest extends AbstractTransactionalJUnit4SpringContextTests {
         child.noise = randomHexString()
         parent.addChild( child )
 
-        entityManager.persist( parent )
-        entityManager.flush()
+        repository.save( parent )
 
     }
 
