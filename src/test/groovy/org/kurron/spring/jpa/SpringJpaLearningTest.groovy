@@ -14,14 +14,17 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 class SpringJpaLearningTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
-    private ParentRepository repository;
+    private ParentRepository parentRepository;
+
+    @Autowired
+    private ChildRepository childRepository;
 
     private final Random random = new Random()
 
     @Test
     public void persist_parent_and_child_via_spring_jpa_repository() {
 
-        assert null != repository
+        assert null != parentRepository
 
         final Parent parent = new Parent()
         parent.name = randomHexString()
@@ -31,15 +34,53 @@ class SpringJpaLearningTest extends AbstractTransactionalJUnit4SpringContextTest
         child.noise = randomHexString()
         parent.addChild( child )
 
-        repository.save( parent )
+        parentRepository.save( parent )
 
     }
 
     @Test
-    public void exercise_finders() {
+    public void exercise_parent_finders() {
 
-        assert null != repository
+        assert null != parentRepository
+        assert null != childRepository
 
+        def parents = populateDatabase()
+
+        println 'There are ' + parentRepository.count() + ' parent records in the system.'
+        parentRepository.findAll().each {
+            println it
+        }
+
+        if ( parentRepository.exists( parents[0].id ) )
+        {
+            parentRepository.delete( parents[0].id )
+        }
+        println 'There are now ' + parentRepository.count() + ' parent records in the system.'
+
+        parentRepository.deleteAll()
+        println 'There are now ' + parentRepository.count() + ' parent records in the system.'
+
+    }
+
+    @Test
+    public void exercise_child_finders() {
+
+        assert null != parentRepository
+        assert null != childRepository
+
+        def parents = populateDatabase()
+
+        println 'There are ' + childRepository.count() + ' child records in the system.'
+        childRepository.findAll().each {
+            println it
+        }
+
+        parentRepository.deleteAll()
+        println 'There are now ' + childRepository.count() + ' child records in the system.'
+
+    }
+
+    private def populateDatabase() {
         def parents = []
         5.times {
             final Parent parent = new Parent()
@@ -49,25 +90,11 @@ class SpringJpaLearningTest extends AbstractTransactionalJUnit4SpringContextTest
                 final Child child = new Child()
                 child.name = randomHexString()
                 child.noise = randomHexString()
-                parent.addChild( child )
+                parent.addChild(child)
             }
-            parents << repository.save( parent )
+            parents << parentRepository.save(parent)
         }
-
-        println 'There are ' + repository.count() + ' parent records in the system.'
-        repository.findAll().each {
-            println it
-        }
-
-        if ( repository.exists( parents[0].id ) )
-        {
-            repository.delete( parents[0].id )
-        }
-        println 'There are now ' + repository.count() + ' parent records in the system.'
-
-        repository.deleteAll()
-        println 'There are now ' + repository.count() + ' parent records in the system.'
-
+        return parents
     }
 
     private String randomHexString()

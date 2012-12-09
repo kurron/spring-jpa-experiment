@@ -109,6 +109,6 @@ public class Child
     @Override
     public String toString()
     {
-        return name + ":" + noise
+        return name + ":" + noise + ':' + id + ':' + version
     }
 }
