@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests
 
-import javax.persistence.EntityManager
-import javax.persistence.PersistenceContext
-
 /**
  * Learning test to drive the Spring JPA experiments.
  */
@@ -35,6 +32,41 @@ class SpringJpaLearningTest extends AbstractTransactionalJUnit4SpringContextTest
         parent.addChild( child )
 
         repository.save( parent )
+
+    }
+
+    @Test
+    public void exercise_finders() {
+
+        assert null != repository
+
+        def parents = []
+        5.times {
+            final Parent parent = new Parent()
+            parent.name = randomHexString()
+
+            5.times {
+                final Child child = new Child()
+                child.name = randomHexString()
+                child.noise = randomHexString()
+                parent.addChild( child )
+            }
+            parents << repository.save( parent )
+        }
+
+        println 'There are ' + repository.count() + ' parent records in the system.'
+        repository.findAll().each {
+            println it
+        }
+
+        if ( repository.exists( parents[0].id ) )
+        {
+            repository.delete( parents[0].id )
+        }
+        println 'There are now ' + repository.count() + ' parent records in the system.'
+
+        repository.deleteAll()
+        println 'There are now ' + repository.count() + ' parent records in the system.'
 
     }
 

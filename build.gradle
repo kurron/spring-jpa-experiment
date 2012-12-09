@@ -94,6 +94,7 @@ dependencies {
     sourceArchives "org.codehaus.jackson:jackson-mapper-asl:${jacksonVersion}:sources"
 
     sourceArchives "org.springframework.data:spring-data-jpa:${springDataJpaVersion}:sources"
+    sourceArchives "org.springframework.data:spring-data-commons-core:${springDataJpaVersion}:sources"
     sourceArchives "org.hibernate:hibernate-core:${hibernateVersion}:sources"
     sourceArchives "org.hibernate:hibernate-entitymanager:${hibernateVersion}:sources"
     sourceArchives "org.hsqldb:hsqldb:${hsqldbVersion}:sources"

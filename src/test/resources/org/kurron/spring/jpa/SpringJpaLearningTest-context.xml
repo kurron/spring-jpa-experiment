@@ -15,7 +15,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="database" value="HSQL" />
-                <property name="showSql" value="true"/>
+                <property name="showSql" value="false"/>
                 <property name="generateDdl" value="true"/>
             </bean>
         </property>
@@ -25,5 +25,5 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
 
-    <jpa:repositories base-package="org.kurron.spring.jpa" />
+    <jpa:repositories  base-package="org.kurron.spring.jpa" />
 </beans>

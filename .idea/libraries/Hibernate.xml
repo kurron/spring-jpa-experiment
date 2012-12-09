@@ -8,6 +8,7 @@
       <root url="jar://$PROJECT_DIR$/build/dependencies/jboss-transaction-api_1.1_spec-1.0.0.Final.jar!/" />
       <root url="jar://$PROJECT_DIR$/build/dependencies/javassist-3.15.0-GA.jar!/" />
       <root url="jar://$PROJECT_DIR$/build/dependencies/hibernate-entitymanager-4.1.8.Final.jar!/" />
+      <root url="jar://$PROJECT_DIR$/build/dependencies/antlr-2.7.7.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
