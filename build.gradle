@@ -3,10 +3,13 @@ apply plugin: 'groovy'
 defaultTasks 'clean', 'collectJars', 'build'
 
 repositories {
-    mavenCentral()
+    maven {
+        url "https://repository.jboss.org"
+    }
     maven {
         url "http://repo.springsource.org/libs-release"
     }
+    mavenCentral()
 }
 
 configurations {
@@ -22,7 +25,6 @@ configurations {
 dependencies {
     groovy "org.codehaus.groovy:groovy-all:${groovyVersion}"
     compile "org.springframework:spring-aop:${springFrameworkVersion}"
-    compile "org.springframework:spring-asm:${springFrameworkVersion}"
     compile "org.springframework:spring-aspects:${springFrameworkVersion}"
     compile "org.springframework:spring-beans:${springFrameworkVersion}"
     compile "org.springframework:spring-context:${springFrameworkVersion}"
@@ -63,7 +65,6 @@ dependencies {
 
     sourceArchives "org.codehaus.groovy:groovy-all:${groovyVersion}:sources"
     sourceArchives "org.springframework:spring-aop:${springFrameworkVersion}:sources"
-    sourceArchives "org.springframework:spring-asm:${springFrameworkVersion}:sources"
     sourceArchives "org.springframework:spring-aspects:${springFrameworkVersion}:sources"
     sourceArchives "org.springframework:spring-beans:${springFrameworkVersion}:sources"
     sourceArchives "org.springframework:spring-context:${springFrameworkVersion}:sources"
